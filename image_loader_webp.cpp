@@ -32,8 +32,8 @@
 
 #include "core/io/marshalls.h"
 #include "core/os/os.h"
-#include "core/print_string.h"
-#include "core/project_settings.h"
+#include "core/string/print_string.h"
+#include "core/config/project_settings.h"
 
 #include <stdlib.h>
 #include <webp/decode.h>

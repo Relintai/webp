@@ -9,9 +9,8 @@ env_webp = env_modules.Clone()
 
 thirdparty_obj = []
 
-if env["builtin_libwebp"]:
-    thirdparty_dir = "#thirdparty/libwebp/"
-    thirdparty_sources = [
+thirdparty_dir = "./thirdparty/libwebp/"
+thirdparty_sources = [
         "sharpyuv/sharpyuv.c",
         "sharpyuv/sharpyuv_csp.c",
         "sharpyuv/sharpyuv_dsp.c",
@@ -133,15 +132,16 @@ if env["builtin_libwebp"]:
         "src/utils/rescaler_utils.c",
         "src/utils/thread_utils.c",
         "src/utils/utils.c",
-    ]
-    thirdparty_sources = [thirdparty_dir + file for file in thirdparty_sources]
+]
 
-    env_webp.Prepend(CPPPATH=[thirdparty_dir, thirdparty_dir + "src/"])
+thirdparty_sources = [thirdparty_dir + file for file in thirdparty_sources]
 
-    env_thirdparty = env_webp.Clone()
-    env_thirdparty.disable_warnings()
-    env_thirdparty.add_source_files(thirdparty_obj, thirdparty_sources)
-    env.modules_sources += thirdparty_obj
+env_webp.Prepend(CPPPATH=[thirdparty_dir, thirdparty_dir + "src/"])
+
+env_thirdparty = env_webp.Clone()
+env_thirdparty.disable_warnings()
+env_thirdparty.add_source_files(thirdparty_obj, thirdparty_sources)
+env.modules_sources += thirdparty_obj
 
 
 # Godot source files
